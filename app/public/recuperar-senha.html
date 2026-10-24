@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reservas | Recuperar senha</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="brand">
+        <p class="eyebrow">Acesso</p>
+        <h1>Recuperar senha</h1>
+        <p>Informe email e data de nascimento para gerar uma senha temporaria.</p>
+      </section>
+
+      <section class="panel" aria-label="Recuperacao de senha">
+        <form class="form" data-endpoint="/api/usuarios/recuperar-senha" data-kind="recuperacao">
+          <label>
+            Email
+            <input name="email" type="email" autocomplete="email" required>
+          </label>
+          <label>
+            Data de nascimento
+            <input name="dataNascimento" type="date" required>
+          </label>
+          <button class="primary" type="submit">Gerar nova senha</button>
+          <a class="text-link align-start" href="/">Voltar para login</a>
+          <p class="status" role="status"></p>
+        </form>
+      </section>
+    </main>
+
+    <script src="/scripts/main.js"></script>
+  </body>
+</html>

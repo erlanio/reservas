@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reservas | Cadastro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="brand">
+        <p class="eyebrow">Novo acesso</p>
+        <h1>Cadastro</h1>
+        <p>Crie sua conta para solicitar acesso ao sistema de reservas.</p>
+      </section>
+
+      <section class="panel" aria-label="Cadastro">
+        <form class="form" data-endpoint="/api/usuarios" data-kind="cadastro">
+          <label>
+            Nome
+            <input name="nome" type="text" autocomplete="name" required>
+          </label>
+          <label>
+            Email
+            <input name="email" type="email" autocomplete="email" required>
+          </label>
+          <label>
+            Senha
+            <input name="senha" type="password" autocomplete="new-password" required>
+          </label>
+          <label>
+            Data de nascimento
+            <input name="dataNascimento" type="date" required>
+          </label>
+          <button class="primary" type="submit">Cadastrar</button>
+          <a class="text-link align-start" href="/">Voltar para login</a>
+          <p class="status" role="status"></p>
+        </form>
+      </section>
+    </main>
+
+    <script src="/scripts/main.js"></script>
+  </body>
+</html>

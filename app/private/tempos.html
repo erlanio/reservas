@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reservas | Tempos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+  </head>
+  <body class="dashboard-page">
+    <aside class="sidebar" id="sidebar" aria-label="Menu principal">
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <span class="brand-mark" aria-hidden="true">R</span>
+          <span class="menu-label">Reservas</span>
+        </div>
+        <button class="icon-button" type="button" data-action="toggle-menu" aria-label="Ocultar menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a class="nav-item" href="/minhas-reservas" data-home-link>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 11.5 12 4l9 7.5"></path>
+            <path d="M5 10v10h14V10"></path>
+            <path d="M9 20v-6h6v6"></path>
+          </svg>
+          <span class="menu-label">Inicio</span>
+        </a>
+        <a class="nav-item" href="/minhas-reservas" data-master-only data-my-reservations-link>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+            <path d="M16 2v4M8 2v4M3 10h18"></path>
+            <path d="M8 15h5M8 19h8"></path>
+          </svg>
+          <span class="menu-label">Minhas reservas</span>
+        </a>
+        <a class="nav-item" href="/usuarios" data-master-only>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9.5" cy="7" r="4"></circle>
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          <span class="menu-label">Usuarios</span>
+        </a>
+        <a class="nav-item" href="/ativos" data-master-only>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path>
+            <path d="M3.3 7 12 12l8.7-5"></path>
+            <path d="M12 22V12"></path>
+          </svg>
+          <span class="menu-label">Ativos</span>
+        </a>
+        <a class="nav-item is-active" href="/tempos" aria-current="page" data-master-only>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M12 7v5l3 2"></path>
+          </svg>
+          <span class="menu-label">Tempos</span>
+        </a>
+        <a class="nav-item" href="/reservas">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+            <path d="M16 2v4"></path>
+            <path d="M8 2v4"></path>
+            <path d="M3 10h18"></path>
+            <path d="m9 16 2 2 4-4"></path>
+          </svg>
+          <span class="menu-label">Reservas</span>
+        </a>
+      </nav>
+
+      <button class="logout-button" type="button" data-action="logout">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <path d="M16 17l5-5-5-5"></path>
+          <path d="M21 12H9"></path>
+        </svg>
+        <span class="menu-label">Sair</span>
+      </button>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Administracao</p>
+          <h1>Tempos</h1>
+        </div>
+        <p class="user-chip" id="dashboardUser">Usuario</p>
+      </header>
+
+      <section class="management">
+        <div class="toolbar">
+          <div class="segmented" id="timeViews" aria-label="Visualizacao de tempos">
+            <button class="segment is-active" type="button" data-view="ativos">Ativos</button>
+            <button class="segment" type="button" data-view="lixeira">Lixeira</button>
+          </div>
+          <button class="primary compact icon-text" type="button" data-action="new-time">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 5v14"></path>
+              <path d="M5 12h14"></path>
+            </svg>
+            <span>Novo tempo</span>
+          </button>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Identificador</th>
+                <th>Inicio</th>
+                <th>Fim</th>
+                <th>Opcoes</th>
+              </tr>
+            </thead>
+            <tbody id="timesTable"></tbody>
+          </table>
+        </div>
+
+        <p class="status" id="timesStatus" role="status"></p>
+      </section>
+    </main>
+
+    <dialog class="modal" id="timeModal">
+      <form class="modal-form" method="dialog" id="timeForm">
+        <h2 id="timeModalTitle">Novo tempo</h2>
+        <input type="hidden" name="id">
+        <label>
+          Identificador
+          <input name="identificador" type="text" required>
+        </label>
+        <label>
+          Horario de inicio
+          <input name="horaInicio" type="time" required>
+        </label>
+        <label>
+          Horario de fim
+          <input name="horaFim" type="time" required>
+        </label>
+        <p class="status modal-status" id="timeFormStatus" role="status"></p>
+        <div class="modal-actions">
+          <button class="secondary compact" type="button" data-action="close-time-modal">Cancelar</button>
+          <button class="primary compact" type="submit">Salvar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="modal confirm-modal" id="confirmModal">
+      <form class="modal-form" method="dialog">
+        <div class="confirm-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 9v4"></path>
+            <path d="M12 17h.01"></path>
+            <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"></path>
+          </svg>
+        </div>
+        <h2 id="confirmTitle">Confirmar acao</h2>
+        <p id="confirmMessage">Confirme para continuar.</p>
+        <div class="modal-actions">
+          <button class="secondary compact" type="button" data-action="cancel-confirm">Cancelar</button>
+          <button class="primary compact" type="button" data-action="confirm-action">Confirmar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="/scripts/dashboard.js"></script>
+    <script src="/scripts/times.js"></script>
+  </body>
+</html>

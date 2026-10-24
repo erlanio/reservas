@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reservas | Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="brand">
+        <p class="eyebrow">Sistema escolar</p>
+        <h1>Reservas</h1>
+        <p>Acesse sua conta para reservar projetores, laboratorios e outros ativos da escola.</p>
+      </section>
+
+      <section class="panel" aria-label="Login">
+        <form class="form" data-endpoint="/api/login" data-kind="login">
+          <label>
+            Email
+            <input name="email" type="email" autocomplete="email" required>
+          </label>
+          <label>
+            Senha
+            <input name="senha" type="password" autocomplete="current-password" required>
+          </label>
+          <button class="primary" type="submit">Entrar</button>
+          <div class="inline-actions">
+            <a class="text-link" href="/cadastro.html">Criar cadastro</a>
+            <a class="text-link" href="/recuperar-senha.html">Esqueci a senha</a>
+          </div>
+          <p class="status" role="status"></p>
+        </form>
+      </section>
+
+      <section class="screen pending-card" id="pendingUser" aria-live="polite">
+        <div class="pending-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M20 7 9 18l-5-5"></path>
+          </svg>
+        </div>
+        <div class="pending-copy">
+          <p class="eyebrow">Validacao pendente</p>
+          <h2>Cadastro recebido</h2>
+          <p>Sua conta esta aguardando aprovacao de um usuario master para liberar o acesso ao sistema.</p>
+        </div>
+        <div class="pending-steps" aria-label="Proximos passos">
+          <div>
+            <strong>1</strong>
+            <span>Solicite a validacao para um master.</span>
+          </div>
+          <div>
+            <strong>2</strong>
+            <span>Depois da aprovacao, volte e faca login normalmente.</span>
+          </div>
+        </div>
+        <div class="master-panel">
+          <span>Contatos master</span>
+          <ul class="masters" id="masterEmails"></ul>
+        </div>
+        <button class="secondary icon-text" type="button" data-action="back-login">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m12 19-7-7 7-7"></path>
+            <path d="M19 12H5"></path>
+          </svg>
+          <span>Voltar para login</span>
+        </button>
+      </section>
+    </main>
+
+    <script src="/scripts/main.js"></script>
+  </body>
+</html>

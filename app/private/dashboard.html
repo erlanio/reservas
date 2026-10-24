@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reservas | Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+  </head>
+  <body class="dashboard-page">
+    <aside class="sidebar" id="sidebar" aria-label="Menu principal">
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <span class="brand-mark" aria-hidden="true">R</span>
+          <span class="menu-label">Reservas</span>
+        </div>
+        <button class="icon-button" type="button" data-action="toggle-menu" aria-label="Ocultar menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a class="nav-item is-active" href="/minhas-reservas" aria-current="page" data-home-link>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 11.5 12 4l9 7.5"></path>
+            <path d="M5 10v10h14V10"></path>
+            <path d="M9 20v-6h6v6"></path>
+          </svg>
+          <span class="menu-label">Inicio</span>
+        </a>
+        <a class="nav-item" href="/minhas-reservas" data-master-only data-my-reservations-link>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+            <path d="M16 2v4M8 2v4M3 10h18"></path>
+            <path d="M8 15h5M8 19h8"></path>
+          </svg>
+          <span class="menu-label">Minhas reservas</span>
+        </a>
+        <a class="nav-item" href="/usuarios" data-master-only>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9.5" cy="7" r="4"></circle>
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          </svg>
+          <span class="menu-label">Usuarios</span>
+        </a>
+        <a class="nav-item" href="/ativos" data-master-only>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path>
+            <path d="M3.3 7 12 12l8.7-5"></path>
+            <path d="M12 22V12"></path>
+          </svg>
+          <span class="menu-label">Ativos</span>
+        </a>
+        <a class="nav-item" href="/tempos" data-master-only>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"></circle>
+            <path d="M12 7v5l3 2"></path>
+          </svg>
+          <span class="menu-label">Tempos</span>
+        </a>
+        <a class="nav-item" href="/reservas">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+            <path d="M16 2v4"></path>
+            <path d="M8 2v4"></path>
+            <path d="M3 10h18"></path>
+            <path d="m9 16 2 2 4-4"></path>
+          </svg>
+          <span class="menu-label">Reservas</span>
+        </a>
+      </nav>
+
+      <button class="logout-button" type="button" data-action="logout">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <path d="M16 17l5-5-5-5"></path>
+          <path d="M21 12H9"></path>
+        </svg>
+        <span class="menu-label">Sair</span>
+      </button>
+    </aside>
+
+    <main class="dashboard-main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Dashboard</p>
+          <h1>Inicio</h1>
+        </div>
+        <p class="user-chip" id="dashboardUser">Usuario</p>
+      </header>
+
+      <section class="management dashboard-agenda">
+        <div class="pending-alert" id="pendingUsersAlert" hidden>
+          <span class="pending-alert-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M19 8v6"></path>
+              <path d="M22 11h-6"></path>
+            </svg>
+          </span>
+          <span class="pending-alert-copy">
+            <strong>Novos cadastros</strong>
+            <span id="pendingUsersMessage">Existem usuarios aguardando aprovacao.</span>
+          </span>
+          <span class="pending-alert-count" id="pendingUsersCount" aria-label="0 usuarios pendentes">0</span>
+          <a class="secondary compact icon-text pending-alert-action" href="/usuarios?filtro=pendentes">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+            <span>Ver pendentes</span>
+          </a>
+          <button class="icon-button pending-alert-close" type="button" data-action="close-pending-alert" aria-label="Fechar notificacao">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M18 6 6 18"></path>
+              <path d="m6 6 12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+        <div class="agenda-summary">
+          <div>
+            <p class="eyebrow">Reservas do dia</p>
+            <h2 id="agendaTitle">Agenda</h2>
+          </div>
+          <p class="status-pill success-pill" id="agendaCount">0 reservas</p>
+        </div>
+
+        <div class="panel-form dashboard-filters">
+          <label>
+            Data
+            <input id="dashboardDate" type="date">
+          </label>
+          <label>
+            Tipo de ativo
+            <select id="dashboardType"></select>
+          </label>
+          <label>
+            Ativo
+            <select id="dashboardAsset"></select>
+          </label>
+        </div>
+
+        <div class="dashboard-grid">
+          <section class="agenda-panel">
+            <div class="form-header">
+              <div>
+                <p class="eyebrow">Linha do tempo</p>
+                <h2 id="timelineTitle">Selecione um ativo</h2>
+              </div>
+              <div class="timeline-legend" aria-label="Legenda">
+                <span><i class="legend-dot free-dot"></i>Livre</span>
+                <span><i class="legend-dot reserved-dot"></i>Reservado</span>
+                <span><i class="legend-dot past-dot"></i>Passado</span>
+              </div>
+            </div>
+            <div class="timeline-list" id="timelineList"></div>
+          </section>
+
+          <section class="agenda-panel reservations-panel">
+            <div>
+              <p class="eyebrow">Reservas</p>
+              <h2>Uso no dia</h2>
+            </div>
+            <div class="day-reservations" id="dayReservations"></div>
+          </section>
+        </div>
+
+        <p class="status" id="dashboardStatus" role="status"></p>
+      </section>
+    </main>
+
+    <dialog class="modal" id="quickReservationModal">
+      <form class="modal-form" method="dialog" id="quickReservationForm">
+        <h2>Reserva rapida</h2>
+        <input type="hidden" name="ativoId">
+        <input type="hidden" name="tempoId">
+        <label>
+          Data
+          <input name="dataReserva" type="date" readonly>
+        </label>
+        <label>
+          Ativo
+          <input name="ativoLabel" type="text" readonly>
+        </label>
+        <label>
+          Tempo
+          <input name="tempoLabel" type="text" readonly>
+        </label>
+        <label>
+          Usuario
+          <select name="usuarioId" required></select>
+        </label>
+        <p class="status modal-status" id="quickReservationStatus" role="status"></p>
+        <div class="modal-actions">
+          <button class="secondary compact" type="button" data-action="close-quick-reservation">Cancelar</button>
+          <button class="primary compact" type="submit">Confirmar reserva</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="modal confirm-modal" id="dashboardConfirmModal">
+      <form class="modal-form" method="dialog">
+        <div class="confirm-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 9v4"></path>
+            <path d="M12 17h.01"></path>
+            <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"></path>
+          </svg>
+        </div>
+        <h2 id="dashboardConfirmTitle">Confirmar acao</h2>
+        <p id="dashboardConfirmMessage">Confirme para continuar.</p>
+        <div class="modal-actions">
+          <button class="secondary compact" type="button" data-action="cancel-dashboard-confirm">Cancelar</button>
+          <button class="primary compact" type="button" data-action="confirm-dashboard-action">Confirmar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="/scripts/dashboard.js"></script>
+  </body>
+</html>
